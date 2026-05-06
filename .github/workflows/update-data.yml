@@ -1,0 +1,58 @@
+name: Atualizar dados do dashboard
+
+on:
+  workflow_dispatch:
+
+# Impede execuções simultâneas — evita commit de JSON parcial se duas runs sobrepostas
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache dependências pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Atualizar dados
+        env:
+          PORTAL_TRANSPARENCIA_API_KEY: ${{ secrets.PORTAL_TRANSPARENCIA_API_KEY }}
+        run: python src/build.py
+
+      - name: Verificar se há mudanças
+        id: check_changes
+        run: git diff --quiet public/data/ || echo "has_changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit e push (se houver mudanças)
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Actions — RepaseSUS Bot"
+          git add public/data/
+          git commit -m "chore: atualizar dados $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
+
+      - name: Sem mudanças nos dados
+        if: steps.check_changes.outputs.has_changes != 'true'
+        run: echo "Dados já atualizados. Nenhum commit necessário."

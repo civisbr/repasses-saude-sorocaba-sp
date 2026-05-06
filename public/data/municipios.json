@@ -1,0 +1,41 @@
+{
+  "ranking_repasse_per_capita": [],
+  "ranking_percentual_saude": [
+    {
+      "municipio": "Sorocaba",
+      "ibge": "3552205",
+      "percentual": 27.58,
+      "cumpriu": true
+    },
+    {
+      "municipio": "Campinas",
+      "ibge": "3509502",
+      "percentual": 24.89,
+      "cumpriu": true
+    },
+    {
+      "municipio": "São José dos Campos",
+      "ibge": "3549904",
+      "percentual": 23.1,
+      "cumpriu": true
+    },
+    {
+      "municipio": "Osasco",
+      "ibge": "3534401",
+      "percentual": 22.9,
+      "cumpriu": true
+    },
+    {
+      "municipio": "Piracicaba",
+      "ibge": "3538709",
+      "percentual": 22.03,
+      "cumpriu": true
+    },
+    {
+      "municipio": "Ribeirão Preto",
+      "ibge": "3543402",
+      "percentual": 20.94,
+      "cumpriu": true
+    }
+  ]
+}

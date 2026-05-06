@@ -1,0 +1,61 @@
+name: Backfill histórico
+
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: 'Iniciar a partir do mês (YYYYMM, opcional). Deixe vazio para 2019-01.'
+        required: false
+        default: ''
+
+# Não cancelar backfill em andamento — pode demorar 5-10 minutos
+concurrency:
+  group: backfill
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache dependências pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Executar backfill
+        env:
+          PORTAL_TRANSPARENCIA_API_KEY: ${{ secrets.PORTAL_TRANSPARENCIA_API_KEY }}
+        run: |
+          if [ -n "${{ inputs.since }}" ]; then
+            python src/build.py --backfill --since "${{ inputs.since }}"
+          else
+            python src/build.py --backfill
+          fi
+
+      - name: Verificar se há mudanças e fazer commit
+        run: |
+          git diff --quiet public/data/ || (
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Actions — RepaseSUS Bot"
+            git add public/data/
+            git commit -m "chore: backfill historico $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          )

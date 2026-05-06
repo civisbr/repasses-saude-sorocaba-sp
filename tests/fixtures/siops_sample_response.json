@@ -1,0 +1,30 @@
+[
+  {
+    "numero_indicador": "1.0",
+    "ds_indicador": "Receita de Impostos e de Transferências Constitucionais e Legais",
+    "numerador": null,
+    "denominador": null,
+    "indicador_calculado": "2737420508,21"
+  },
+  {
+    "numero_indicador": "1.6",
+    "ds_indicador": "Receita Líquida de Impostos e Transferências Constitucionais e Legais (RLI)",
+    "numerador": null,
+    "denominador": null,
+    "indicador_calculado": "2737420508,21"
+  },
+  {
+    "numero_indicador": "2.1",
+    "ds_indicador": "Despesa de saúde por habitante segundo a LC 141/2012",
+    "numerador": 1110742826.12,
+    "denominador": 723682.0,
+    "indicador_calculado": "1535,00"
+  },
+  {
+    "numero_indicador": "3.2",
+    "ds_indicador": "% da receita própria aplicada em ASPS conforme a LC 141/:ano",
+    "numerador": 755166232.41,
+    "denominador": 2737420508.21,
+    "indicador_calculado": "27,58 %"
+  }
+]

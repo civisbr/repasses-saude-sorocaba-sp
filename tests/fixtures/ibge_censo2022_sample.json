@@ -1,0 +1,58 @@
+[{
+  "id": "93",
+  "variavel": "População residente",
+  "unidade": "Pessoas",
+  "resultados": [{
+    "classificacoes": [],
+    "series": [
+      {
+        "localidade": {
+          "id": "3552205",
+          "nivel": {"id": "N6", "nome": "Município"},
+          "nome": "Sorocaba (SP)"
+        },
+        "serie": {"2022": "723682"}
+      },
+      {
+        "localidade": {
+          "id": "3509502",
+          "nivel": {"id": "N6", "nome": "Município"},
+          "nome": "Campinas (SP)"
+        },
+        "serie": {"2022": "1139047"}
+      },
+      {
+        "localidade": {
+          "id": "3549904",
+          "nivel": {"id": "N6", "nome": "Município"},
+          "nome": "São José dos Campos (SP)"
+        },
+        "serie": {"2022": "697054"}
+      },
+      {
+        "localidade": {
+          "id": "3538709",
+          "nivel": {"id": "N6", "nome": "Município"},
+          "nome": "Piracicaba (SP)"
+        },
+        "serie": {"2022": "423323"}
+      },
+      {
+        "localidade": {
+          "id": "3534401",
+          "nivel": {"id": "N6", "nome": "Município"},
+          "nome": "Osasco (SP)"
+        },
+        "serie": {"2022": "728615"}
+      },
+      {
+        "localidade": {
+          "id": "3543402",
+          "nivel": {"id": "N6", "nome": "Município"},
+          "nome": "Ribeirão Preto (SP)"
+        },
+        "serie": {"2022": "698642"}
+      }
+    ]
+  }]
+}]

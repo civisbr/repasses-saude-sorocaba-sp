@@ -1,0 +1,54 @@
+[
+  {
+    "ano": 2022,
+    "mes": 1,
+    "funcao": "10",
+    "funcao_nome": "SAUDE",
+    "subfuncao": "ATENCAO BASICA",
+    "programa": "PAB",
+    "acao": "PISO ATENCAO BASICA",
+    "municipio_ibge": "3552205",
+    "municipio_nome": "SOROCABA",
+    "valor": 1000000.00,
+    "fonte": "portal_transparencia"
+  },
+  {
+    "ano": 2022,
+    "mes": 2,
+    "funcao": "10",
+    "funcao_nome": "SAUDE",
+    "subfuncao": "ATENCAO BASICA",
+    "programa": "PAB",
+    "acao": "PISO ATENCAO BASICA",
+    "municipio_ibge": "3552205",
+    "municipio_nome": "SOROCABA",
+    "valor": 1100000.00,
+    "fonte": "portal_transparencia"
+  },
+  {
+    "ano": 2023,
+    "mes": 1,
+    "funcao": "10",
+    "funcao_nome": "SAUDE",
+    "subfuncao": "ATENCAO BASICA",
+    "programa": "PAB",
+    "acao": "PISO ATENCAO BASICA",
+    "municipio_ibge": "3552205",
+    "municipio_nome": "SOROCABA",
+    "valor": 1200000.00,
+    "fonte": "portal_transparencia"
+  },
+  {
+    "ano": 2023,
+    "mes": 1,
+    "funcao": "10",
+    "funcao_nome": "SAUDE",
+    "subfuncao": "ASSISTENCIA HOSPITALAR E AMBULATORIAL",
+    "programa": "CAPS",
+    "acao": "CENTRO ATENCAO PSICOSSOCIAL",
+    "municipio_ibge": "3552205",
+    "municipio_nome": "SOROCABA",
+    "valor": 200000.00,
+    "fonte": "portal_transparencia"
+  }
+]

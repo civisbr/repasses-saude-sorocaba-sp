@@ -1,0 +1,47 @@
+{
+  "municipios": [
+    {
+      "ibge": "3552205",
+      "nome": "Sorocaba",
+      "populacao": 723682,
+      "fonte_pop": "Censo 2022",
+      "ano_pop": 2022
+    },
+    {
+      "ibge": "3509502",
+      "nome": "Campinas",
+      "populacao": 1139047,
+      "fonte_pop": "Censo 2022",
+      "ano_pop": 2022
+    },
+    {
+      "ibge": "3549904",
+      "nome": "São José dos Campos",
+      "populacao": 697054,
+      "fonte_pop": "Censo 2022",
+      "ano_pop": 2022
+    },
+    {
+      "ibge": "3538709",
+      "nome": "Piracicaba",
+      "populacao": 423323,
+      "fonte_pop": "Censo 2022",
+      "ano_pop": 2022
+    },
+    {
+      "ibge": "3534401",
+      "nome": "Osasco",
+      "populacao": 728615,
+      "fonte_pop": "Censo 2022",
+      "ano_pop": 2022
+    },
+    {
+      "ibge": "3543402",
+      "nome": "Ribeirão Preto",
+      "populacao": 698642,
+      "fonte_pop": "Censo 2022",
+      "ano_pop": 2022
+    }
+  ],
+  "ultima_atualizacao": "2026-05-05"
+}

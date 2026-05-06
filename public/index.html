@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RepaseSUS Sorocaba — Repasses Federais em Saúde</title>
+  <meta name="description" content="Painel público de acompanhamento dos repasses federais em saúde para Sorocaba-SP" />
+
+  <!-- Google Fonts: Space Grotesk (dados) + DM Sans (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js para os gráficos (CDN, sem bundle) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteudo principal</a>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-icon">🏥</span>
+        <span class="brand-name">RepaseSUS <span class="brand-city">Sorocaba</span></span>
+      </div>
+      <div class="nav-meta">
+        <span class="update-badge">
+          Atualizado em <span id="ultima-atualizacao">carregando...</span>
+        </span>
+        <a href="https://github.com/civisbr/repasses-saude-sorocaba-sp" class="nav-link" target="_blank" rel="noopener noreferrer">
+          Código fonte
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1>Repasses federais em saúde para Sorocaba</h1>
+      <p class="hero-subtitle">
+        Dados oficiais atualizados automaticamente. Quanto o governo federal repassa para a saúde do nosso município?
+      </p>
+    </div>
+  </header>
+
+  <main class="container" id="conteudo-principal" tabindex="-1">
+
+    <!-- ALERTA DE ATRASO (revelado via JS se ultimo repasse > 30 dias) -->
+    <div id="alerta-atraso" class="alert-card alert-card--oculto" role="alert" aria-live="assertive">
+      <span class="alert-icon" aria-hidden="true">&#9888;</span>
+      <div class="alert-content">
+        <strong class="alert-titulo">Repasse com possivel atraso</strong>
+        <p class="alert-corpo">
+          O ultimo repasse registrado foi em <span id="alerta-data-ultimo"></span>
+          — ha mais de 30 dias. Isso pode indicar atraso no repasse federal ou
+          ausencia de dados atualizados. Consulte o
+          <a href="https://portaldatransparencia.gov.br" target="_blank" rel="noopener noreferrer">
+            Portal da Transparencia
+          </a> para verificar.
+        </p>
+      </div>
+    </div>
+
+    <!-- CARDS DE RESUMO -->
+    <section class="summary-cards" aria-label="Indicadores principais">
+      <div class="card metric-card" id="card-total-ano">
+        <div class="metric-label">Total repassado em <span id="ano-atual"></span></div>
+        <div class="metric-value" id="total-ano">—</div>
+        <div class="metric-sub" id="variacao-ano"></div>
+      </div>
+      <div class="card metric-card">
+        <div class="metric-label">Repasse per capita</div>
+        <div class="metric-value" id="per-capita">—</div>
+        <div class="metric-sub">por habitante / ano</div>
+      </div>
+      <div class="card metric-card" id="card-minimo">
+        <div class="metric-label">% do orçamento em saúde</div>
+        <div class="metric-value" id="pct-saude">—</div>
+        <div class="metric-sub" id="status-minimo"></div>
+      </div>
+      <div class="card metric-card">
+        <div class="metric-label">Último repasse recebido</div>
+        <div class="metric-value metric-value--sm" id="ultimo-repasse">—</div>
+        <div class="metric-sub" id="ultimo-repasse-data"></div>
+      </div>
+    </section>
+
+    <!-- GRÁFICO: SÉRIE TEMPORAL -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Repasses mensais (últimos 5 anos)</h2>
+        <div class="section-controls">
+          <select id="programa-filter" class="filter-select">
+            <option value="todos">Todos os programas</option>
+            <!-- Populado via JS -->
+          </select>
+        </div>
+      </div>
+      <div class="card chart-card">
+        <canvas id="chart-serie-temporal" height="300"></canvas>
+      </div>
+    </section>
+
+    <!-- TABELA: REPASSES POR PROGRAMA -->
+    <section class="section">
+      <h2>Repasses por programa federal</h2>
+      <div class="card">
+        <div class="table-wrapper">
+          <table id="tabela-programas" class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Programa</th>
+                <th scope="col">Subfunção</th>
+                <th scope="col" class="text-right">Ano atual</th>
+                <th scope="col" class="text-right">Ano anterior</th>
+                <th scope="col" class="text-right">Variação</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-programas-body">
+              <!-- Populado via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRÁFICO: COMPARAÇÃO COM MUNICÍPIOS -->
+    <section class="section">
+      <h2>Comparação com municípios similares</h2>
+      <p class="section-desc">Repasse federal per capita em saúde — municípios paulistas de porte similar</p>
+      <div class="card chart-card">
+        <canvas id="chart-municipios" height="250"></canvas>
+      </div>
+    </section>
+
+    <!-- GRÁFICO: CUMPRIMENTO DO MÍNIMO CONSTITUCIONAL -->
+    <section class="section">
+      <h2>Cumprimento do mínimo constitucional (15%)</h2>
+      <p class="section-desc">Percentual do orçamento municipal aplicado em saúde (mínimo exigido pela EC 29/2000: 15%)</p>
+      <div class="card chart-card">
+        <canvas id="chart-minimo" height="220"></canvas>
+      </div>
+    </section>
+
+    <!-- TABELA COMPLETA -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Todos os repasses</h2>
+        <button id="btn-download-csv" class="btn-secondary" aria-label="Baixar dados filtrados como arquivo CSV">⬇ Baixar CSV</button>
+      </div>
+      <div class="card">
+        <div class="table-controls">
+          <input type="text" id="search-repasses" placeholder="Buscar por programa..." class="search-input" aria-label="Buscar por programa na tabela" />
+          <select id="ano-filter" class="filter-select" aria-label="Filtrar tabela por ano">
+            <!-- Populado via JS -->
+          </select>
+          <select id="programa-filter-table" class="filter-select" aria-label="Filtrar tabela por programa">
+            <option value="todos">Todos os programas</option>
+            <!-- Populado via JS -->
+          </select>
+          <select id="mes-filter" class="filter-select" aria-label="Filtrar tabela por mês">
+            <option value="todos">Todos os meses</option>
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+          </select>
+        </div>
+        <div class="table-wrapper">
+          <table id="tabela-repasses" class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Programa</th>
+                <th scope="col">Subfunção</th>
+                <th scope="col" class="text-right">Valor (R$)</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-repasses-body">
+              <!-- Populado via JS -->
+            </tbody>
+          </table>
+        </div>
+        <div id="pagination-repasses" class="pagination"></div>
+        <div class="table-footer">
+          <span id="count-repasses"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FONTES E METODOLOGIA -->
+    <section class="section metodologia">
+      <h2>Fontes e metodologia</h2>
+      <div class="card">
+        <p>Dados coletados automaticamente de fontes governamentais oficiais:</p>
+        <ul>
+          <li><strong>Repasses federais:</strong> API do Portal da Transparência do Governo Federal</li>
+          <li><strong>Execução orçamentária:</strong> SIOPS/DATASUS — Sistema de Informações sobre Orçamentos Públicos em Saúde</li>
+          <li><strong>População:</strong> IBGE — Censo Demográfico 2022</li>
+        </ul>
+        <p class="aviso">
+          Este projeto é uma iniciativa de civic tech sem fins lucrativos.
+          Não representa posição política ou governamental.
+          <a href="https://github.com/civisbr/repasses-saude-sorocaba-sp" target="_blank" rel="noopener noreferrer">Ver código fonte no GitHub</a>.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>RepaseSUS Sorocaba — Dados públicos para cidadãos. Atualizado automaticamente via GitHub Actions.</p>
+      <p>Denúncias de irregularidades: <a href="https://falabr.cgu.gov.br" target="_blank" rel="noopener noreferrer">CGU Fala.BR</a> | <a href="https://www.tce.sp.gov.br" target="_blank" rel="noopener noreferrer">TCE-SP</a></p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

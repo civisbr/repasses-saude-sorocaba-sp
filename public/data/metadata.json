@@ -1,0 +1,26 @@
+{
+  "ultima_atualizacao": "2026-05-05T16:46:15.782826",
+  "municipio": "Sorocaba",
+  "ibge_code": "3552205",
+  "fontes": [
+    {
+      "nome": "Portal da Transparência Federal",
+      "url": "https://portaldatransparencia.gov.br",
+      "dados": "Repasses federais para saúde"
+    },
+    {
+      "nome": "SIOPS/DATASUS",
+      "url": "https://siops.datasus.gov.br",
+      "dados": "Execução orçamentária municipal em saúde"
+    },
+    {
+      "nome": "IBGE",
+      "url": "https://servicodados.ibge.gov.br",
+      "dados": "Dados populacionais"
+    }
+  ],
+  "metodologia": "Dados coletados automaticamente via API de fontes governamentais oficiais. Repasses federais limitados a transferências mandatárias (funcao=10 — Saúde). Repasses per capita calculados com base no Censo Demográfico 2022 (IBGE).",
+  "aviso": "Este painel é um projeto de civic tech sem fins lucrativos. Não representa posição política ou governamental.",
+  "codigo_fonte": "https://github.com/civisbr/repasses-saude-sorocaba-sp",
+  "total_registros_coletados": 0
+}

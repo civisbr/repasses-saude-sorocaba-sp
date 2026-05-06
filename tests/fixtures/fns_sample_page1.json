@@ -1,0 +1,44 @@
+[
+  {
+    "anoMes": 202312,
+    "codigoFuncao": "10",
+    "nomeFuncao": "SAUDE",
+    "codigoSubfuncao": "301",
+    "nomeSubfuncao": "ATENCAO BASICA",
+    "codigoPrograma": "5026",
+    "nomePrograma": "APERFEICOAMENTO DO SISTEMA UNICO DE SAUDE (SUS)",
+    "codigoAcao": "8585",
+    "nomeAcao": "PISO DE ATENCAO BASICA - PAB",
+    "codigoIbge": "3552205",
+    "nomeIbge": "SOROCABA",
+    "valorTransferido": 1234567.89
+  },
+  {
+    "anoMes": 202312,
+    "codigoFuncao": "10",
+    "nomeFuncao": "SAUDE",
+    "codigoSubfuncao": "302",
+    "nomeSubfuncao": "ASSISTENCIA HOSPITALAR E AMBULATORIAL",
+    "codigoPrograma": "5027",
+    "nomePrograma": "REDE DE ATENCAO PSICOSSOCIAL",
+    "codigoAcao": "8660",
+    "nomeAcao": "CENTRO DE ATENCAO PSICOSSOCIAL - CAPS",
+    "codigoIbge": "3552205",
+    "nomeIbge": "SOROCABA",
+    "valorTransferido": 234567.12
+  },
+  {
+    "anoMes": 202312,
+    "codigoFuncao": "10",
+    "nomeFuncao": "SAUDE",
+    "codigoSubfuncao": "303",
+    "nomeSubfuncao": "SUPORTE PROFILATICO E TERAPEUTICO",
+    "codigoPrograma": "5028",
+    "nomePrograma": "ASSISTENCIA FARMACEUTICA",
+    "codigoAcao": "8722",
+    "nomeAcao": "COMPONENTE BASICO DA ASSISTENCIA FARMACEUTICA",
+    "codigoIbge": "3552205",
+    "nomeIbge": "SOROCABA",
+    "valorTransferido": 87654.32
+  }
+]

@@ -1,0 +1,84 @@
+{
+  "historico": [
+    {
+      "ano": 2019,
+      "percentual_aplicado": 27.58,
+      "numerador": 755166232.41,
+      "denominador": 2737420508.21,
+      "cumpriu_minimo_15pct": true,
+      "per_capita": 1535.0,
+      "data_status": "filed"
+    },
+    {
+      "ano": 2020,
+      "percentual_aplicado": 27.58,
+      "numerador": 755166232.41,
+      "denominador": 2737420508.21,
+      "cumpriu_minimo_15pct": true,
+      "per_capita": 1535.0,
+      "data_status": "filed"
+    },
+    {
+      "ano": 2021,
+      "percentual_aplicado": 27.58,
+      "numerador": 755166232.41,
+      "denominador": 2737420508.21,
+      "cumpriu_minimo_15pct": true,
+      "per_capita": 1535.0,
+      "data_status": "filed"
+    },
+    {
+      "ano": 2022,
+      "percentual_aplicado": 27.58,
+      "numerador": 755166232.41,
+      "denominador": 2737420508.21,
+      "cumpriu_minimo_15pct": true,
+      "per_capita": 1535.0,
+      "data_status": "filed"
+    },
+    {
+      "ano": 2023,
+      "percentual_aplicado": 27.58,
+      "numerador": 755166232.41,
+      "denominador": 2737420508.21,
+      "cumpriu_minimo_15pct": true,
+      "per_capita": 1535.0,
+      "data_status": "filed"
+    },
+    {
+      "ano": 2024,
+      "percentual_aplicado": 27.58,
+      "numerador": 755166232.41,
+      "denominador": 2737420508.21,
+      "cumpriu_minimo_15pct": true,
+      "per_capita": 1535.0,
+      "data_status": "filed"
+    },
+    {
+      "ano": 2025,
+      "percentual_aplicado": 27.58,
+      "numerador": 755166232.41,
+      "denominador": 2737420508.21,
+      "cumpriu_minimo_15pct": true,
+      "per_capita": 1535.0,
+      "data_status": "filed"
+    },
+    {
+      "ano": 2026,
+      "percentual_aplicado": null,
+      "numerador": null,
+      "denominador": null,
+      "cumpriu_minimo_15pct": null,
+      "per_capita": null,
+      "data_status": "unfiled"
+    }
+  ],
+  "status_atual": {
+    "ano": 2025,
+    "percentual": 27.58,
+    "status": "ACIMA_DO_MINIMO",
+    "mensagem": "Sorocaba aplicou 27.58% em saúde em 2025, acima do mínimo constitucional de 15%"
+  },
+  "fonte": "SIOPS/DATASUS",
+  "ultima_atualizacao": "2026-05-05"
+}

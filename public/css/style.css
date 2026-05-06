@@ -1,0 +1,349 @@
+/* RepaseSUS Sorocaba — Dashboard CSS */
+/* Paleta: fundo claro/escuro, azul institucional, accent cyan */
+
+:root {
+  --bg: #f0f2f5;
+  --surface: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --text-primary: #0d1117;
+  --text-secondary: #5b6472;
+  --text-muted: #6b7280;
+  --accent: #0077cc;
+  --accent-light: #e8f3ff;
+  --success: #0a7a5c;
+  --success-light: #e8f8f3;
+  --danger: #c0392b;
+  --danger-light: #fdf0ee;
+  --warning: #b45309;
+  --warning-light: #fef8ec;
+  --chart-blue: #2563eb;
+  --chart-cyan: #06b6d4;
+  --chart-green: #10b981;
+  --chart-red: #ef4444;
+  --chart-gray: #6b7280;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --font-data: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --tooltip-bg: #1e2530;
+  --tooltip-text: #f0f2f5;
+  --tooltip-border: rgba(255,255,255,0.12);
+  --alert-border: #b45309;
+  --alert-bg: #fef8ec;
+  --alert-text: #b45309;
+  --focus-ring: #0077cc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: rgba(255,255,255,0.08);
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-light: #1c2d3f;
+    --success-light: #0d2218;
+    --danger-light: #2d1515;
+    --warning-light: #2b1e0a;
+    --chart-blue: #58a6ff;
+    --chart-cyan: #22d3ee;
+    --chart-gray: #8b949e;
+    --tooltip-bg: #e6edf3;
+    --tooltip-text: #0d1117;
+    --alert-bg: #2b1e0a;
+    --alert-text: #fbbf24;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* ─── Layout ─── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── Navbar ─── */
+.navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 8px; font-family: var(--font-data); font-weight: 700; font-size: 17px; }
+.brand-icon { font-size: 20px; }
+.brand-city { color: var(--accent); }
+.nav-meta { display: flex; align-items: center; gap: 20px; }
+.update-badge { font-size: 12px; color: var(--text-muted); }
+.nav-link { font-size: 13px; color: var(--accent); text-decoration: none; }
+
+/* ─── Hero ─── */
+.hero {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0 32px;
+  margin-bottom: 32px;
+}
+.hero h1 {
+  font-family: var(--font-data);
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.hero-subtitle { font-size: 16px; color: var(--text-secondary); max-width: 600px; }
+
+/* ─── Cards ─── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+}
+
+/* ─── Metric Cards ─── */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.metric-card { padding: 20px 22px; }
+.metric-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.metric-value { font-family: var(--font-data); font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; line-height: 1.1; }
+.metric-value--sm { font-size: 20px; }
+.metric-sub { font-size: 12px; color: var(--text-muted); }
+.metric-card.status-ok { border-left: 3px solid var(--success); }
+.metric-card.status-danger { border-left: 3px solid var(--danger); }
+
+/* ─── Sections ─── */
+.section { margin-bottom: 40px; }
+.section h2 { font-family: var(--font-data); font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+.section-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.chart-card { padding: 20px; }
+
+/* ─── Controls ─── */
+.filter-select, .search-input {
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.search-input { width: 280px; }
+.table-controls { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+
+/* ─── Tables ─── */
+.table-wrapper { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th { text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-primary); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(0,0,0,0.02); }
+.text-right { text-align: right; }
+.table-footer { padding: 10px 12px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); }
+
+/* ─── Variação percentual ─── */
+.variacao-positiva { color: var(--success); font-weight: 500; }
+.variacao-negativa { color: var(--danger); font-weight: 500; }
+.variacao-neutra { color: var(--text-muted); }
+
+/* ─── Badge de status ─── */
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+.badge-success { background: var(--success-light); color: var(--success); }
+.badge-danger { background: var(--danger-light); color: var(--danger); }
+.badge-warning { background: var(--warning-light); color: var(--warning); }
+
+/* ─── Buttons ─── */
+.btn-secondary { font-family: var(--font-body); font-size: 13px; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text-primary); cursor: pointer; transition: background .15s; }
+.btn-secondary:hover { background: var(--bg); }
+
+/* ─── Metodologia ─── */
+.metodologia .card { font-size: 14px; line-height: 1.7; }
+.metodologia ul { padding-left: 20px; margin: 10px 0; }
+.metodologia li { margin-bottom: 4px; }
+.aviso { font-size: 12px; color: var(--text-muted); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.aviso a { color: var(--accent); }
+
+/* ─── Footer ─── */
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  margin-top: 60px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 2;
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+/* ─── Loading states ─── */
+.skeleton { background: linear-gradient(90deg, var(--border) 25%, rgba(0,0,0,0.04) 50%, var(--border) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; display: inline-block; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .summary-cards { grid-template-columns: 1fr 1fr; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .search-input { width: 100%; }
+  .nav-meta .nav-link { display: none; }
+}
+
+/* ─── Paginação ─── */
+.pagination {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+}
+.pagination-btn {
+  font-size: 12px;
+  font-family: var(--font-body);
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  min-width: 28px;
+  text-align: center;
+}
+.pagination-btn:hover { background: var(--bg); }
+.pagination-btn[aria-current="page"] {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.pagination-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* ─── SIOPS não arquivado ─── */
+.siops-unfiled { color: var(--warning); font-size: 12px; }
+
+/* ─── Linha de filtros múltiplos ─── */
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+
+/* --- Skip Link (UX-03) --- */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 8px;
+  background: var(--surface);
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  padding: 8px 16px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.1s;
+}
+.skip-link:focus {
+  top: 8px;
+}
+
+/* --- Main focus reset (skip link target) --- */
+main:focus {
+  outline: none;
+}
+
+/* --- Alert Card (UX-02) --- */
+.alert-card {
+  background: var(--warning-light);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--alert-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: var(--shadow);
+}
+.alert-card--oculto {
+  display: none;
+}
+.alert-icon {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--alert-border);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.alert-titulo {
+  font-family: var(--font-data);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 4px;
+}
+.alert-corpo {
+  font-size: 15px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+.alert-corpo a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* --- Tooltip Siglas (UX-01) --- */
+.sigla-tooltip {
+  border-bottom: 1px dashed var(--text-muted);
+  cursor: help;
+  text-decoration: none;
+}
+.sigla-tooltip:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.tooltip {
+  position: absolute;
+  z-index: 200;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  border: 1px solid var(--tooltip-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: var(--font-body);
+  line-height: 1.4;
+  max-width: 280px;
+  white-space: normal;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: none;
+}
+.tooltip[hidden] {
+  display: none;
+}
+
+/* --- Dark mode overrides para alert card --- */
+@media (prefers-color-scheme: dark) {
+  .alert-card {
+    background: var(--warning-light);
+    border-left-color: #fbbf24;
+  }
+  .alert-icon {
+    color: #fbbf24;
+  }
+}
